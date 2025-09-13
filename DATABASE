@@ -2,7 +2,43 @@
 CREATE DATABASE IF NOT EXISTS vehicle_parts_db;
 USE vehicle_parts_db;
 
--- Table 1: cart_items
+
+-- Table 1: users
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    role VARCHAR(50) DEFAULT 'buyer',
+    role_status VARCHAR(20) DEFAULT 'approved',
+    role_request VARCHAR(20),
+    role_reason TEXT,
+    additional_info TEXT,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY (email)
+);
+
+
+-- Table 2: parts
+CREATE TABLE parts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    category VARCHAR(100) NOT NULL,
+    description TEXT,
+    price DECIMAL(10,2) NOT NULL,
+    stock_quantity INT NOT NULL DEFAULT 0,
+    image_url VARCHAR(500),
+    seller_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    status VARCHAR(20) DEFAULT 'active',
+    KEY seller_id (seller_id),
+    CONSTRAINT fk_parts_user FOREIGN KEY (seller_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+
+-- Table 3: cart_items
 CREATE TABLE cart_items (
     id INT AUTO_INCREMENT PRIMARY KEY,
     buyer_id INT,
@@ -13,7 +49,7 @@ CREATE TABLE cart_items (
     KEY product_id (product_id)
 );
 
--- Table 2: categories
+-- Table 4: categories
 CREATE TABLE categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -21,7 +57,7 @@ CREATE TABLE categories (
     UNIQUE KEY name (name)
 );
 
--- Table 3: complaints
+-- Table 5: complaints
 CREATE TABLE complaints (
     id INT AUTO_INCREMENT PRIMARY KEY,
     complainant_id INT NOT NULL,
@@ -34,7 +70,7 @@ CREATE TABLE complaints (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Table 4: knowledge_base
+-- Table 6: knowledge_base
 CREATE TABLE knowledge_base (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
@@ -46,7 +82,7 @@ CREATE TABLE knowledge_base (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Table 5: notifications
+-- Table 7: notifications
 CREATE TABLE notifications (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -58,7 +94,7 @@ CREATE TABLE notifications (
     CONSTRAINT fk_notifications_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- Table 6: orders
+-- Table 8: orders
 CREATE TABLE orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
     buyer_id INT NOT NULL,
@@ -78,7 +114,7 @@ CREATE TABLE orders (
     CONSTRAINT fk_orders_buyer FOREIGN KEY (buyer_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- Table 7: order_items
+-- Table 9: order_items
 CREATE TABLE order_items (
     id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT NOT NULL,
@@ -91,39 +127,6 @@ CREATE TABLE order_items (
     CONSTRAINT fk_order_items_part FOREIGN KEY (part_id) REFERENCES parts(id) ON DELETE CASCADE
 );
 
--- Table 8: users
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    role VARCHAR(50) DEFAULT 'buyer',
-    role_status VARCHAR(20) DEFAULT 'approved',
-    role_request VARCHAR(20),
-    role_reason TEXT,
-    additional_info TEXT,
-    password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE KEY (email)
-);
-
-
--- Table 9: parts
-CREATE TABLE parts (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    category VARCHAR(100) NOT NULL,
-    description TEXT,
-    price DECIMAL(10,2) NOT NULL,
-    stock_quantity INT NOT NULL DEFAULT 0,
-    image_url VARCHAR(500),
-    seller_id INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    status VARCHAR(20) DEFAULT 'active',
-    KEY seller_id (seller_id),
-    CONSTRAINT fk_parts_user FOREIGN KEY (seller_id) REFERENCES users(id) ON DELETE CASCADE
-);
 
 -- Table 10: wishlists
 CREATE TABLE wishlists (
