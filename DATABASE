@@ -20,20 +20,6 @@ CREATE TABLE users (
 );
 
 
--- Create admin_logs table if it doesn't exist
-CREATE TABLE IF NOT EXISTS admin_logs (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    admin_id INT NOT NULL,
-    action VARCHAR(50) NOT NULL,
-    target_user_id INT NOT NULL,
-    details TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (admin_id) REFERENCES users(id),
-    FOREIGN KEY (target_user_id) REFERENCES users(id)
-);
-
-
-
 -- Table 2: parts
 CREATE TABLE parts (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -166,17 +152,23 @@ CREATE TABLE wishlists (
 -- Table 11: reviews
 CREATE TABLE reviews (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    part_id INT NOT NULL,
     buyer_id INT NOT NULL,
-    product_id INT NOT NULL,
-    rating INT NOT NULL,
+    rating TINYINT NOT NULL CHECK (rating >= 1 AND rating <= 5),
     comment TEXT,
-    is_read TINYINT(1) DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    KEY buyer_id (buyer_id),
-    KEY product_id (product_id),
-    CONSTRAINT fk_reviews_buyer FOREIGN KEY (buyer_id) REFERENCES users(id) ON DELETE CASCADE,
-    CONSTRAINT fk_reviews_product FOREIGN KEY (product_id) REFERENCES parts(id) ON DELETE CASCADE
-);
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    status ENUM('active', 'hidden', 'reported') DEFAULT 'active',
+    
+    FOREIGN KEY (part_id) REFERENCES parts(id) ON DELETE CASCADE,
+    FOREIGN KEY (buyer_id) REFERENCES users(id) ON DELETE CASCADE,
+    
+    UNIQUE KEY unique_buyer_part (buyer_id, part_id), -- One review per buyer per part
+    INDEX idx_part_id (part_id),
+    INDEX idx_buyer_id (buyer_id),
+    INDEX idx_rating (rating)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 -- Table 12: tickets
 CREATE TABLE tickets (
@@ -231,3 +223,17 @@ CREATE TABLE ticket_replies (
     CONSTRAINT fk_ticket_replies_sender 
         FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+
+-- Table 14: admin_logs table if it doesn't exist
+CREATE TABLE IF NOT EXISTS admin_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    admin_id INT NOT NULL,
+    action VARCHAR(50) NOT NULL,
+    target_user_id INT NOT NULL,
+    details TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (admin_id) REFERENCES users(id),
+    FOREIGN KEY (target_user_id) REFERENCES users(id)
+);
+
