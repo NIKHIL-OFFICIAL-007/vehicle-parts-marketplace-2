@@ -10,14 +10,28 @@ CREATE TABLE users (
     email VARCHAR(255) NOT NULL,
     role VARCHAR(50) DEFAULT 'buyer',
     role_status VARCHAR(20) DEFAULT 'approved',
-    role_request VARCHAR(20),
-    role_reason TEXT,
+    role_request VARCHAR(20) DEFAULT NULL,
+    role_reason TEXT DEFAULT NULL,
     additional_info TEXT,
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE KEY (email)
 );
+
+
+-- Create admin_logs table if it doesn't exist
+CREATE TABLE IF NOT EXISTS admin_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    admin_id INT NOT NULL,
+    action VARCHAR(50) NOT NULL,
+    target_user_id INT NOT NULL,
+    details TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (admin_id) REFERENCES users(id),
+    FOREIGN KEY (target_user_id) REFERENCES users(id)
+);
+
 
 
 -- Table 2: parts
