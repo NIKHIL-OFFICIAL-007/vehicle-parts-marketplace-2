@@ -1,0 +1,68 @@
+-- Insert simplified, practical categories for a mini car parts project
+INSERT INTO categories (name, description, status) VALUES
+('Engine Parts', 'Filters, belts, gaskets, spark plugs, and engine components.', 'active'),
+('Brakes & Suspension', 'Brake pads, rotors, shocks, struts, and suspension kits.', 'active'),
+('Wheels & Tires', 'Rims, wheels, tires, valve stems, and tire pressure sensors.', 'active'),
+('Electrical & Lighting', 'Batteries, alternators, headlights, taillights, and wiring.', 'active'),
+('Exhaust System', 'Mufflers, catalytic converters, exhaust pipes, and headers.', 'active'),
+('Interior & Comfort', 'Seats, floor mats, steering wheels, air vents, and trim.', 'active'),
+('Fluids & Filters', 'Engine oil, coolant, brake fluid, oil filters, and air filters.', 'active'),
+('Accessories & Tools', 'Car covers, toolkits, cleaning supplies, and mounting hardware.', 'active');
+
+
+-- Insert 20 sample car parts for seller with ID 9 (Prices in INR)
+INSERT INTO parts (name, category_id, description, price, stock_quantity, image_url, seller_id, status) VALUES
+-- Engine Parts (Category ID: 1)
+('Honda Civic Spark Plugs', 1, 'Set of 4 genuine Honda spark plugs for 2016-2021 Civic models. Improves fuel efficiency and engine performance.', 3000, 15, 'https://m.media-amazon.com/images/I/71jlIyFiqOL._UF1000,1000_QL80_.jpg', 9, 'active'),
+('OEM Oil Filter', 1, 'High-quality oil filter compatible with most common vehicles. Ensures clean oil circulation and engine protection.', 1000, 25, 'https://www.australianonlinecarparts.com.au/assets/full/JU2Z6731A.jpg?20220209114921', 9, 'active'),
+('Engine Air Filter', 1, 'Premium air filter for improved airflow and engine efficiency. Reduces intake restriction.', 2300, 10, 'https://m.media-amazon.com/images/I/618A43AJQyL._UF350,350_QL80_.jpg', 9, 'active'),
+('Timing Belt Kit', 1, 'Complete timing belt kit including tensioner and idler pulleys. Essential for maintaining proper engine timing.', 12500, 5, 'https://5.imimg.com/data5/SELLER/Default/2022/4/PV/LR/FO/32691354/2f254ea8-6ddf-4983-9df8-9888780c9d76.jpg', 9, 'active'),
+('Coolant Temperature Sensor', 1, 'Accurate coolant temperature sensor for reliable engine temperature readings and efficient cooling system operation.', 3200, 8, 'https://m.media-amazon.com/images/I/61Y1Ok26IEL._UF1000,1000_QL80_.jpg', 9, 'active'),
+
+-- Brakes & Suspension (Category ID: 2)
+('Front Brake Pads', 2, 'High-performance ceramic brake pads for reduced dust and longer life. Compatible with popular sedan models.', 7000, 12, 'https://m.media-amazon.com/images/I/71uLQVjm1pL.jpg', 9, 'active'),
+('Shocks & Struts Assembly', 2, 'Complete front shock absorber and strut assembly. Improves ride comfort and handling stability.', 16500, 6, 'https://www.monroe.com/content/loc-na/loc-us/fmmp-monroe/en_US/products/restore-your-ride/quick-strut-assembly/_jcr_content/main-par/updated_header/showcase-image.img.png/quick-strut-header-large-1741979733570.png', 9, 'active'),
+('Rotors - Front Set', 2, 'Precision-machined brake rotors for smooth braking performance and reduced noise.', 12500, 8, 'https://images-cdn.ubuy.co.in/639ed8d136bf0a3cc44770e4-friction-master-r0228-front-premium-oe.jpg', 9, 'active'),
+('Control Arm Bushing', 2, 'Original equipment replacement bushing for reduced suspension noise and improved alignment.', 1800, 20, 'https://m.media-amazon.com/images/I/71jCRDqupOL._UF1000,1000_QL80_.jpg', 9, 'active'),
+('Sway Bar Link', 2, 'Sturdy sway bar link for enhanced vehicle stability during cornering.', 3000, 15, 'https://m.media-amazon.com/images/I/612GDLzGUuL.jpg', 9, 'active'),
+
+-- Wheels & Tires (Category ID: 3)
+('Michelin Pilot Sport A/S 3+ Tires', 3, 'All-season performance tires offering excellent wet and dry traction. Size: 225/45R17.', 12500, 4, 'https://static.tirerack.com/content/dam/tires/michelin/mi_pilot_sport_as3_plus_full.jpg?impolicy=tow-share', 9, 'active'),
+('Alloy Wheel Rim', 3, '18-inch alloy wheel rim in silver finish. Perfect fit for many SUVs and sedans.', 14500, 3, 'https://5.imimg.com/data5/SELLER/Default/2022/7/OF/ME/SO/57256836/new-product-500x500.jpeg', 9, 'active'),
+('Tire Pressure Monitoring System (TPMS)', 3, 'Universal TPMS sensor for accurate tire pressure monitoring and safety alerts.', 2100, 18, 'https://5.imimg.com/data5/KT/LO/MY-4733472/tpms-500x500.jpg', 9, 'active'),
+('Valve Stem Cap', 3, 'Chrome valve stem cap set of 4. Protects valve stems from dirt and moisture.', 400, 50, 'https://rukminim2.flixcart.com/image/704/844/xif0q/tire-valve-stem-core/p/x/5/0-78-4pcs-suitable-for-honda-stem-cap-universal-car-tire-valve-original-imagtsfzzrtwpvjf.jpeg?q=20&crop=false', 9, 'active'),
+('Tire Repair Kit', 3, 'Portable tire repair kit with sealant and plug tool for quick roadside fixes.', 1600, 25, 'https://images.homedepot.ca/productimages/p_1001056817.jpg?product-images=l', 9, 'active'),
+
+-- Electrical & Lighting (Category ID: 4)
+('LED Headlight Bulbs', 4, 'Bright white LED headlight bulbs for improved visibility and energy efficiency.', 3800, 10, 'https://m.media-amazon.com/images/I/71iUwlJtNTL._UF1000,1000_QL80_.jpg', 9, 'active'),
+('Car Battery - Group 24F', 4, 'Heavy-duty automotive battery with high cold cranking amps. Reliable starting power.', 10500, 7, 'https://eparts-images.toyota.com/TrueStart%20Image.webp', 9, 'active'),
+('Alternator', 4, 'Remanufactured alternator with a 3-year warranty. Generates electricity for the vehicle.', 20000, 3, 'https://www.momentummotorworks.com/wp-content/uploads/2023/09/Mercedes-Alternator-1200x900.jpg', 9, 'active'),
+('Tail Light Assembly', 4, 'Complete tail light assembly with brake, turn signal, and reverse lights.', 5500, 6, 'https://m.media-amazon.com/images/I/81tEkRCVz2L._UF894,1000_QL80_.jpg', 9, 'active');
+
+-- Insert 20 additional sample car parts for seller ID 9 (Prices in INR)
+INSERT INTO parts (name, category_id, description, price, stock_quantity, image_url, seller_id, status) VALUES
+-- Exhaust System (Category ID: 5)
+('Cat-Back Exhaust System', 5, 'Stainless steel cat-back exhaust system with dual tips. Enhances sound and flow for improved performance.', 42000, 3, 'https://cdn11.bigcommerce.com/s-tyw10w88l2/images/stencil/1280x1280/products/14968/21666/CBK0017_001__98453__14840.1592321877.jpg?c=2', 9, 'active'),
+('Muffler Replacement', 5, 'Direct-fit replacement muffler for quiet operation and reduced drone. OEM-quality construction.', 10500, 8, 'https://m.media-amazon.com/images/I/41Ln64BOZDL._QL92_SH45_SS200_.jpg', 9, 'active'),
+('Downpipe (Turbo)', 5, 'High-flow downpipe designed for turbocharged engines. Reduces backpressure and improves spool response.', 25000, 5, 'https://n1-racing.com/cdn/shop/files/PhotoRoom_000_20240111_114207__80787.jpg?v=1725703827', 9, 'active'),
+('Exhaust Hangers (Set of 4)', 5, 'Durable rubber exhaust hangers to prevent rattles and reduce vibration transfer to the chassis.', 1800, 20, 'https://www.grimmspeed.com/cdn/shop/products/Subaru_Exhaust_Hanger_12mm_2_2000__92593.jpg?v=1706109482', 9, 'active'),
+
+-- Interior & Comfort (Category ID: 6)
+('Leather Seat Covers (Front Pair)', 6, 'Premium genuine leather seat covers with stitching. Protects original seats from wear and tear.', 15500, 6, 'https://m.media-amazon.com/images/I/71Eg2Vdm1oL.jpg', 9, 'active'),
+('Dashboard Mat (Non-Slip)', 6, 'Custom-fit dashboard mat with anti-slip backing. Reduces glare and protects against UV damage.', 2800, 15, 'https://images-eu.ssl-images-amazon.com/images/I/71z8MxlGrmL._AC_UL375_SR375,375_.jpg', 9, 'active'),
+('Car Floor Mats (All-Weather Set)', 6, 'Heavy-duty rubber floor mats with deep channels to trap dirt, water, and snow. Easy to clean.', 5500, 12, 'https://image.made-in-china.com/202f0j00vweiIocrLjqG/Universal-Fit-Heavy-Duty-Rubber-for-All-Weather-Protection-Black-Automotive-Floor-Mats-Fits-Most-Cars-Suvs-and-Trucks-4-Piece-Full-Set-Trimmable-.webp', 9, 'active'),
+('Steering Wheel Cover (Suede)', 6, 'Soft suede steering wheel cover for improved grip and comfort during long drives.', 2500, 18, 'https://images-cdn.ubuy.co.in/6356f3e9aa45381f63597ea4-fashion-new-suede-steering-wheel-cover.jpg', 9, 'active'),
+('Sunshade (Foldable)', 6, 'Universal foldable sunshade that blocks UV rays and keeps your interior cool on hot days.', 1600, 25, 'https://m.media-amazon.com/images/I/71Yh38KNJPL._UF1000,1000_QL80_.jpg', 9, 'active'),
+
+-- Fluids & Filters (Category ID: 7)
+('Full Synthetic Engine Oil (5W-30, 5L)', 7, 'High-performance full synthetic engine oil meeting API SP standards. Optimized for modern engines.', 3800, 30, 'https://cdn.moglix.com/p/FLxGeEFGsMuai-xxlarge.jpg', 9, 'active'),
+('Transmission Fluid (ATF Dexron VI)', 7, 'Genuine-specification automatic transmission fluid for smooth shifting and extended component life.', 3200, 22, 'https://i.ebayimg.com/images/g/JdsAAOSw9Ydfd3vQ/s-l1200.jpg', 9, 'active'),
+('Cabin Air Filter (Activated Carbon)', 7, 'Carbon-activated cabin air filter removes dust, pollen, and odors for cleaner cabin air quality.', 2000, 28, 'https://m.media-amazon.com/images/I/81YWpfJUfhL._UF1000,1000_QL80_.jpg', 9, 'active'),
+('Brake Fluid DOT 4 (500ml)', 7, 'High-boiling-point DOT 4 brake fluid for optimal braking performance and safety.', 1200, 40, 'https://5.imimg.com/data5/SELLER/Default/2023/2/TY/HK/TS/137202805/new-product-500x500.jpeg', 9, 'active'),
+
+-- Accessories & Tools (Category ID: 8)
+('Jump Starter Pack (2000A)', 8, 'Portable lithium jump starter with USB ports and LED flashlight. Starts gas and diesel vehicles up to 8L.', 10500, 7, 'https://m.media-amazon.com/images/I/61x-LQUTOhL._UF1000,1000_QL80_.jpg', 9, 'active'),
+('Tire Inflator (Digital)', 8, 'Digital tire inflator with pressure gauge and auto-shutoff. Perfect for quick roadside inflation.', 4200, 14, 'https://images-cdn.ubuy.com.sa/67678af595a9a40cb52344b7-tire-inflator-portable-air.jpg', 9, 'active'),
+('Car Vacuum Cleaner (Cordless)', 8, 'Compact cordless vacuum with crevice tool and HEPA filter. Ideal for quick interior cleanups.', 5000, 10, 'https://m.media-amazon.com/images/I/81kQlYwtSfL.jpg', 9, 'active'),
+('OBD2 Scanner (Bluetooth)', 8, 'Bluetooth OBD2 diagnostic scanner compatible with iOS and Android apps. Reads and clears check engine lights.', 3200, 16, 'https://m.media-amazon.com/images/I/61mqA0jsSiL.jpg', 9, 'active'),
+('Car Wash & Wax Kit', 8, 'Complete kit with premium wash soap, microfiber towels, wax applicator, and drying aid for a showroom shine.', 2700, 20, 'https://rukminim2.flixcart.com/image/704/844/xif0q/automotive-combo/s/3/x/classic-car-wash-wax-kit-pack-of-3-items-200-ml-each-and-foam-2-original-imagzbyc7hkuxgff.jpeg?q=90&crop=false', 9, 'active');
